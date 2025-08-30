@@ -1,0 +1,22 @@
+.ac {
+  &-popover {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: var(--surface-0, #fff);
+  }
+  &-dropdown {
+    &-ul {
+      top: calc(100% + 0.25rem) !important;
+      z-index: 1000 !important;
+    }
+  }
+  &-item {
+    &-img {
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    &-name {
+      font-size: 0.75rem;
+    }
+  }
+}
