@@ -143,6 +143,13 @@ export const metadata: Metadata = {
   other: { "x-ua-compatible": "IE=edge" },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 3,
+  minimumScale: 0.5,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
