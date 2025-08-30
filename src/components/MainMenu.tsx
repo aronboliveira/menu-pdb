@@ -6,7 +6,7 @@ import { OwnerSect } from "@/lib/declarations/types";
 const LABELS: Record<OwnerSect, string> = {
   caipis: "Caipirinhas & Vodkas",
   energeticos: "Energéticos & Copões",
-  gins: "Gins & Drinks",
+  gins: "Gins & Shots",
   latas: "Latas & Garrafas",
   longnecks: "Long Necks",
   especiais: "Bebidas Especiais",

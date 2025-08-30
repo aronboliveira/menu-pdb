@@ -25,6 +25,7 @@ export default function Search({ searchRef, fsId }: SearchProps): JSX.Element {
     return PRODUCTS.filter(
       p =>
         p.name.toLowerCase().includes(query.toLowerCase()) ||
+        p.ownerSect.toLowerCase().includes(query.toLowerCase()) ||
         (p.tags?.length &&
           p.tags.some(t => t.toLowerCase().includes(query.toLowerCase())))
     )

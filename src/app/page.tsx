@@ -74,7 +74,7 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
           label:
             (id === "caipis" && "Caipirinhas & Vodkas") ||
             (id === "energeticos" && "Energéticos & Copões") ||
-            (id === "gins" && "Gins & Drinks") ||
+            (id === "gins" && "Gins & Shots") ||
             (id === "latas" && "Latas & Garrafas") ||
             (id === "longnecks" && "Long Necks") ||
             (id === "especiais" && "Bebidas Especiais") ||
@@ -223,15 +223,37 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
             const clp = btn
               .closest(`.${sectCls}`)
               ?.querySelector(".accordion-collapse");
+
             if (state === "1") {
-              if (clp?.isConnected) {
+              if (clp?.isConnected && clp instanceof HTMLElement) {
                 btn.classList.remove(btnSttCls);
-                clp.classList.remove("collapse");
+                btn.setAttribute("aria-expanded", "true");
+                clp.classList.remove("show");
+                clp.classList.add("collapsing");
+                clp.style.height = "0px";
+                clp.offsetHeight;
+                const scrollHeight = clp.scrollHeight;
+                clp.style.height = `${scrollHeight}px`;
+                setTimeout(() => {
+                  clp.classList.remove("collapsing");
+                  clp.classList.add("collapse", "show");
+                  clp.style.height = "";
+                }, 350);
               }
             } else {
-              if (clp?.isConnected) {
+              if (clp?.isConnected && clp instanceof HTMLElement) {
                 btn.classList.add(btnSttCls);
-                clp.classList.add("collapse");
+                btn.setAttribute("aria-expanded", "false");
+                clp.style.height = `${clp.scrollHeight}px`;
+                clp.classList.remove("collapse", "show");
+                clp.classList.add("collapsing");
+                clp.offsetHeight;
+                clp.style.height = "0px";
+                setTimeout(() => {
+                  clp.classList.remove("collapsing");
+                  clp.classList.add("collapse");
+                  clp.style.height = "";
+                }, 350);
               }
             }
           }
@@ -289,6 +311,12 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
         }}
       >
         <A11yEffects />
+        <section className={`mb-2 ${sectCls}`}>
+          <p className="text-secondary m-2" style={{ fontSize: "0.7em" }}>
+            Praça Jerusalém, Praia da Bica, Jardim Guanabara, Rio de Janeiro, RJ
+          </p>
+        </section>
+        <hr style={{ marginLeft: "1.2rem", width: "95%", opacity: "0.1" }} />
         <section className={`mb-2 ${sectCls}`}>
           <p className="text-secondary m-2" style={{ fontSize: "0.7em" }}>
             <strong>Dica:</strong> clique nos cabeçalhos das seções para ver
