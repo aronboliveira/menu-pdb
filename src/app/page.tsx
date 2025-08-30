@@ -216,7 +216,6 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
             const clp = btn
               .closest(`.${sectCls}`)
               ?.querySelector(".accordion-collapse");
-
             if (state === "1") {
               if (clp?.isConnected && clp instanceof HTMLElement) {
                 btn.classList.remove(btnSttCls);
@@ -301,6 +300,7 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
           isFiltering,
           isSaving,
           setSaving,
+          activeTabs,
         }}
       >
         <A11yEffects />
@@ -313,8 +313,12 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
         <section className={`mb-2 ${sectCls}`}>
           <p className="text-secondary m-2" style={{ fontSize: "0.7em" }}>
             <strong>Dica:</strong> clique nos cabeçalhos das seções para ver
-            mais e nos <b>produtos</b> para ver mais
+            mais e nos <b>produtos</b> para ver mais&nbsp;
             <em>detalhes</em>.
+          </p>
+          <p className="text-secondary m-2" style={{ fontSize: "0.7em" }}>
+            <strong>Dica:</strong> toque no botão de seta no canto inferior
+            direito para retornar ao topo.
           </p>
         </section>
         <FilterFieldset
@@ -326,6 +330,105 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
           onAllClick={handleAllClick}
         />
         <MainMenu products={products} query={query} />
+        <ErrorBoundary FallbackComponent={() => <></>}>
+          <span
+            className="scroll-to-top"
+            title="Voltar ao topo"
+            onClick={ev => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              let tg = ev.currentTarget as HTMLElement;
+              const id = tg.id;
+              tg.setAttribute("data-animating-click", "true");
+              for (const [k, v] of Object.entries({
+                transform: "translateY(-1px)",
+                background: "darken(transparent, 5%)",
+                opacity: 1,
+              }))
+                (tg.style as any)[k] = v;
+              setTimeout(() => {
+                if (!tg?.isConnected)
+                  tg = document.getElementById(id) as HTMLElement;
+                if (!tg?.isConnected) return;
+                for (const [k, v] of Object.entries({
+                  transform: "translateY(0)",
+                  background: "transparent",
+                  opacity: 0.5,
+                }))
+                  (tg.style as any)[k] = v;
+                tg.removeAttribute("data-animating-click");
+              }, 1000);
+            }}
+            onMouseEnter={ev => {
+              const tg = ev.currentTarget as HTMLElement;
+              if (tg.getAttribute("data-animating-click") === "true") return;
+              for (const [k, v] of Object.entries({
+                transform: "translateY(-2px)",
+                background: "darken(transparent, 5%)",
+                opacity: 1,
+              }))
+                (tg.style as any)[k] = v;
+            }}
+            onMouseLeave={ev => {
+              const tg = ev.currentTarget as HTMLElement;
+              if (tg.getAttribute("data-animating-click") === "true") return;
+              for (const [k, v] of Object.entries({
+                transform: "translateY(0)",
+                background: "transparent",
+                opacity: 0.5,
+              }))
+                (tg.style as any)[k] = v;
+            }}
+            onTouchStart={ev => {
+              const tg = ev.currentTarget as HTMLElement;
+              if (tg.getAttribute("data-animating-click") === "true") return;
+              for (const [k, v] of Object.entries({
+                transform: "translateY(-2px)",
+                background: "darken(transparent, 5%)",
+                opacity: 1,
+              }))
+                (tg.style as any)[k] = v;
+            }}
+            onTouchEnd={ev => {
+              let tg = ev.currentTarget as HTMLElement;
+              const id = tg.id;
+              tg.setAttribute("data-animating-click", "true");
+              for (const [k, v] of Object.entries({
+                transform: "translateY(-1px)",
+                background: "darken(transparent, 5%)",
+                opacity: 1,
+              }))
+                (tg.style as any)[k] = v;
+              setTimeout(() => {
+                if (!tg?.isConnected)
+                  tg = document.getElementById(id) as HTMLElement;
+                if (!tg?.isConnected) return;
+                for (const [k, v] of Object.entries({
+                  transform: "translateY(0)",
+                  background: "transparent",
+                  opacity: 0.5,
+                }))
+                  (tg.style as any)[k] = v;
+
+                tg.removeAttribute("data-animating-click");
+              }, 1000);
+            }}
+            onTouchCancel={ev => {
+              const tg = ev.currentTarget as HTMLElement;
+              if (tg.getAttribute("data-animating-click") === "true") return;
+              for (const [k, v] of Object.entries({
+                transform: "translateY(0)",
+                background: "transparent",
+                opacity: 0.5,
+              }))
+                (tg.style as any)[k] = v;
+            }}
+          >
+            <i
+              className="bi bi-arrow-up-circle-fill"
+              style={{ transform: "scale(2) translate(-0.5rem, -0.5rem)" }}
+            ></i>
+          </span>
+        </ErrorBoundary>
       </MenuCtx.Provider>
     </ErrorBoundary>
   );

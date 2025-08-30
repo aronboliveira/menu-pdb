@@ -5,6 +5,9 @@ import { useContext } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import GenericError from "./GenericError";
 import useMount from "@/lib/hooks/useMount";
+import { enforceAccordionOpening, openAccordion } from "@/lib/utils";
+import { btnCls } from "@/lib/data/states";
+import { OwnerSect } from "@/lib/declarations/types";
 export default function TabBtns({
   allId,
   cls,
@@ -12,12 +15,15 @@ export default function TabBtns({
   onAllClick,
   onToggleTab,
   sections,
-  activeTabs,
 }: TabBtnsProps) {
   const isMounted = useMount();
   const ctx = useContext<IMenuCtx>(MenuCtx);
-  let isFiltering = false;
-  if (ctx) isFiltering = ctx.isFiltering;
+  let isFiltering = false,
+    activeTabs: OwnerSect[] = [];
+  if (ctx) {
+    isFiltering = ctx.isFiltering;
+    activeTabs = ctx.activeTabs;
+  }
   return (
     <ErrorBoundary
       FallbackComponent={() => (
@@ -59,11 +65,23 @@ export default function TabBtns({
                 onClick={() => {
                   isFiltering
                     ? onToggleTab(s.id)
-                    : document.getElementById(s.id)?.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                        inline: "center",
-                      });
+                    : (() => {
+                        const btn = document
+                          .getElementById(s.id)
+                          ?.querySelector(`.${btnCls}`);
+                        if (!(btn instanceof HTMLElement)) return;
+                        btn.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                          inline: "center",
+                        });
+                        openAccordion(btn) &&
+                          setTimeout(() => {
+                            const sect = s.id && document.getElementById(s.id);
+                            if (!sect) return;
+                            enforceAccordionOpening(sect, activeTabs);
+                          }, 100);
+                      })();
                 }}
               >
                 <span style={{ maxWidth: "90%" }}>

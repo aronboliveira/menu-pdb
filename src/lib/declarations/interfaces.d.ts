@@ -48,6 +48,7 @@ export interface IMenuCtx {
   isFiltering: boolean;
   isSaving: boolean;
   setSaving: Dispatch<SetStateAction<boolean>> | null;
+  activeTabs: OwnerSect[];
 }
 export interface SectionProps {
   owner: OwnerSect;

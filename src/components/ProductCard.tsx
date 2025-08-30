@@ -25,7 +25,7 @@ export default function ProductCard({
     return (
       <>
         {text.slice(0, i)}
-        <mark>{text.slice(i, i + query.length)}</mark>
+        <mark style={{ padding: "0" }}>{text.slice(i, i + query.length)}</mark>
         {text.slice(i + query.length)}
       </>
     );
@@ -88,7 +88,7 @@ export default function ProductCard({
                 }}
               />
             </figure>
-            <div className="flex-grow-1">
+            <div className="flex-grow-1 prod-description-block">
               <div className="title h6 m-0">{highlight(p.name) ?? p.name}</div>
               {p.desc && (
                 <small className="desc">{highlight(p.desc) ?? p.desc}</small>
@@ -109,7 +109,7 @@ export default function ProductCard({
               <p className="mb-0">
                 <em>
                   Apresentação sujeita à disponibilidade. Álcool somente para
-                  maiores de 18 anos.
+                  maiores de 18 anos. Beba água e uma pitada de sal ajuda!
                 </em>
               </p>
             </details>

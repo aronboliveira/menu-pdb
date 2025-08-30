@@ -1,12 +1,25 @@
 import {
   AutoCompleteDropdownItem,
   AutoCompleteDropdownProps,
+  IMenuCtx,
 } from "@/lib/declarations/interfaces";
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import Image from "next/image";
 import st from "@/styles/modules/ac-dropdown.module.scss";
 import useMount from "@/lib/hooks/useMount";
+import { btnCls } from "@/lib/data/states";
+import { enforceAccordionOpening, openAccordion } from "@/lib/utils";
+import { OwnerSect } from "@/lib/declarations/types";
+import { MenuCtx } from "@/lib/contexts/MenuCtx";
 const AutoCompleteDropdown = ({
   anchorRef,
   items,
@@ -15,6 +28,9 @@ const AutoCompleteDropdown = ({
   listboxId,
   maxItems,
 }: AutoCompleteDropdownProps) => {
+  let activeTabs: OwnerSect[] = [];
+  const ctx = useContext<IMenuCtx>(MenuCtx);
+  if (ctx) activeTabs = ctx.activeTabs;
   const isMounted = useMount(),
     boxRef = useRef<HTMLUListElement>(null),
     highlightedRef = useRef<number>(0),
@@ -94,8 +110,8 @@ const AutoCompleteDropdown = ({
   useEffect(() => {
     if (!window || document?.body?.getAttribute("listening-click") === "true")
       return;
-    document.addEventListener("mousedown", onDocClick);
-    return () => document.removeEventListener("mousedown", onDocClick);
+    document.body.addEventListener("mousedown", onDocClick);
+    return () => document.body.removeEventListener("mousedown", onDocClick);
   }, [onDocClick]);
   return (
     <ErrorBoundary FallbackComponent={() => <></>}>
@@ -123,7 +139,27 @@ const AutoCompleteDropdown = ({
                 }`}
                 onMouseEnter={() => setHighlightedIndex(i)}
                 onMouseDown={e => e.preventDefault()}
-                onClick={() => onSelect(it)}
+                onClick={() => {
+                  onSelect(it);
+                  (() => {
+                    const btn = document
+                      .getElementById(it.ownerSect ?? "")
+                      ?.querySelector(`.${btnCls}`);
+                    if (!(btn instanceof HTMLElement)) return;
+                    btn.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                      inline: "center",
+                    });
+                    openAccordion(btn) &&
+                      setTimeout(() => {
+                        const sect =
+                          it.ownerSect && document.getElementById(it.ownerSect);
+                        if (!sect) return;
+                        enforceAccordionOpening(sect, activeTabs);
+                      }, 100);
+                  })();
+                }}
               >
                 <Image
                   width={32}

@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { IMenuCtx } from "../declarations/interfaces";
+import { OwnerSect } from "../declarations/types";
 
 export const MenuCtx = createContext<IMenuCtx>({
   query: null,
@@ -9,4 +10,5 @@ export const MenuCtx = createContext<IMenuCtx>({
   isFiltering: false,
   isSaving: false,
   setSaving: null,
+  activeTabs: [] as OwnerSect[],
 } as unknown as IMenuCtx);

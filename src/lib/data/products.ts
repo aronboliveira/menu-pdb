@@ -490,7 +490,7 @@ export const PRODUCTS: Product[] = [
     ownerSect: "latas",
     id: "skollbeats",
     name: "Skol Beats",
-    desc: "Mix de destilado (Cachaça, Gim ou Vodka, 5% a 14% de teor alcoólico) com Suco de Frutas (ex.: Limão) e/ou Ervas (ex.: Menta) ou Água Tônica (consultas disponibilidade em estoque) (269 ml)",
+    desc: "Mix de destilado (Cachaça, Gim ou Vodka, 5% a 14% de teor alcoólico) com Suco de Frutas (ex.: Limão) e/ou Ervas (ex.: Menta) ou Água Tônica (consultar disponibilidade em estoque) (269 ml)",
     price: 10_00,
     img: "/menu/skb.webp",
     tags: [
@@ -723,7 +723,7 @@ export const PRODUCTS: Product[] = [
   {
     ownerSect: "combos",
     id: "combo-gim-int",
-    name: "Combo de Gim Intention",
+    name: "Combo de Gim Intencion",
     desc: "Combo de Garrafa de 900 ml de Gin Intencion, 2 Litros de Energético Baly e aproximadamente 6 litros de gelo",
     img: "/menu/combo-intencion.webp",
     price: 70_00,

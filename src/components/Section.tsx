@@ -54,7 +54,6 @@ export default function Section({
               {title}
             </button>
           </h3>
-
           <div
             id={panelId}
             className="accordion-collapse collapse"

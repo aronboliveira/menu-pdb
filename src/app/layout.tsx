@@ -18,25 +18,116 @@ export const metadata: Metadata = {
   description:
     "Cardápio Digital para bebidas da famosa Tia da Praia da Bica, a Hildene.",
   keywords: [
-    "bar",
-    "cardápio",
-    "cerveja",
-    "drinks",
+    "bar tropical",
+    "bar de rua",
+    "boteco",
+    "cardápio digital",
+    "menu digital",
+    "carta de bebidas",
+    "coquetéis",
+    "mixologia",
+    "happy hour",
+    "chope",
+    "chopp",
+    "long neck",
+    "lata 473 ml",
+    "energético",
+    "caipivodka",
+    "caipiroska",
+    "batida",
+    "promoções de bebidas",
+    "bar barato",
+    "ilha do governador",
+    "rj",
+    "bar tropical",
+    "bar de calle",
+    "menú digital",
+    "carta de bebidas",
+    "cócteles",
+    "mixología",
+    "happy hour",
+    "cerveza",
+    "caipiriña",
+    "caipiroska",
+    "ginebra",
+    "vodka",
+    "cachaça",
+    "lata 473 ml",
+    "long neck",
+    "bebidas energéticas",
+    "combos de bebidas",
+    "ofertas de bebidas",
+    "río de janeiro",
+    "bar tropicale",
+    "bar di strada",
+    "menu digitale",
+    "carta delle bevande",
+    "cocktail",
+    "mixology",
+    "happy hour",
+    "birra",
     "caipirinha",
+    "caipiroska",
+    "gin",
+    "vodka",
+    "cachaca",
+    "lattina 473 ml",
+    "bottiglia long neck",
+    "bevande energetiche",
+    "combo bevande",
+    "offerte drink",
     "rio de janeiro",
+    "tropical bar",
+    "street bar",
+    "digital menu",
+    "drinks menu",
+    "beverage list",
+    "cocktails",
+    "mixology",
+    "happy hour",
+    "beer",
+    "draft beer",
+    "long neck bottle",
+    "473 ml can",
+    "energy drink",
+    "caipirinha",
+    "caipiroska",
+    "drink combos",
+    "drink specials",
+    "cheap drinks",
+    "rio de janeiro",
+    "热带酒吧",
+    "街头酒吧",
+    "数字菜单",
+    "饮品单",
+    "鸡尾酒",
+    "调酒",
+    "欢乐时光",
+    "啤酒",
+    "金酒",
+    "伏特加",
+    "卡莎萨酒",
+    "卡皮林纳",
+    "长颈瓶",
+    "473毫升易拉罐",
+    "能量饮料",
+    "饮品组合",
+    "优惠饮品",
+    "里约热内卢",
   ],
   openGraph: {
     type: "website",
     title: "Cardápio — Bar da Tia da Praia da Bica",
     description:
-      "Veja bebidas, preços e categorias do Bar da Tia da Praia da Bica.",
+      "Veja bebidas, preços e categorias do Bar da Tia da Praia da Bica! Há mais de 10 anos na área!",
     siteName: "Bar da Tia da Praia da Bica",
+    url: "https://drinks-tia-pdb.netlify.app/",
     images: [
       {
-        url: "/logo.webp",
-        width: 630,
+        url: "/logo-og.webp",
+        width: 1200,
         height: 630,
-        alt: "Cardápio do Bar da Tia da Praia da Bica",
+        alt: "Cardápio Digital do Bar da Tia da Praia da Bica",
       },
     ],
     locale: "pt_BR",
@@ -48,7 +139,7 @@ export const metadata: Metadata = {
     images: ["/img/placeholder.webp"],
   },
   authors: [{ name: "Aron Barbosa", url: "https://github.com/aronboliveira" }],
-  alternates: { canonical: "/" },
+  alternates: { canonical: "https://drinks-tia-pdb.netlify.app/" },
   other: { "x-ua-compatible": "IE=edge" },
 };
 
@@ -94,7 +185,18 @@ export default function RootLayout({
             title="Autoria do projeto"
             style={{ opacity: 0.85, marginBottom: "0.5rem" }}
           >
-            Desenvolvido por Aron Barbosa —{" "}
+            Desenvolvido por{" "}
+            <a
+              href="https://aronboliveira-dev.netlify.app/"
+              target="_blank"
+              rel="noopener"
+              title="Portfólio web de Aron Barbosa"
+              className="text-center text-muted"
+              style={{ opacity: 0.85, textDecoration: "none" }}
+            >
+              Aron Barbosa
+            </a>{" "}
+            —{" "}
             <a
               href="https://github.com/aronboliveira"
               target="_blank"
@@ -115,6 +217,29 @@ export default function RootLayout({
           >
             * Todas as imagens são meramente ilustrativas
           </small>
+          <div>
+            <small
+              style={{
+                fontSize: "0.6rem",
+                fontStyle: "italic",
+                color: "gray",
+                opacity: 0.7,
+                marginLeft: "1rem",
+              }}
+            >
+              * Sugestões ou problemas? Envie para o Desenvolvedor&nbsp;
+              <a
+                href="mailto:aronprogramador@gmail.com"
+                target="_blank"
+                rel="noopener"
+                title="Email profissional de Aron Barbosa"
+                className="text-center text-muted"
+                style={{ opacity: 0.85, textDecoration: "underline" }}
+              >
+                clicando aqui!
+              </a>
+            </small>
+          </div>
         </div>
         <script
           defer
