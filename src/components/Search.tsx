@@ -1,7 +1,8 @@
 import { ErrorBoundary } from "react-error-boundary";
 import GenericError from "./GenericError";
 import { JSX, useContext, useEffect, useMemo, useState } from "react";
-import { MenuCtx, SRC_INI } from "@/app/page";
+import { MenuCtx } from "@/lib/contexts/MenuCtx";
+import { SRC_INI } from "@/lib/data/states";
 import {
   AutoCompleteDropdownItem,
   IMenuCtx,

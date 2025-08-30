@@ -1,7 +1,7 @@
 "use client";
 import { PRODUCTS } from "@/lib/data/products";
 import { OwnerSect } from "@/lib/declarations/types";
-import { IMenuCtx, TabItem } from "@/lib/declarations/interfaces";
+import { TabItem } from "@/lib/declarations/interfaces";
 import MainMenu from "@/components/MainMenu";
 import FilterFieldset from "@/components/FilterFieldset";
 import A11yEffects from "@/components/AllyEffect";
@@ -10,28 +10,21 @@ import React, {
   useMemo,
   useState,
   Suspense,
-  createContext,
   useCallback,
 } from "react";
+import { MenuCtx } from "@/lib/contexts/MenuCtx";
 import { ErrorBoundary } from "react-error-boundary";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import LayoutWatcher from "@/components/LayoutWatcher";
-export const sectCls = "prods-sect";
-export const btnCls = "accordion-button";
-export const btnSttCls = "collapsed";
-export const STG_KEY = "pdbMenu";
-export const STG_KEY_SV = "pdbMenuSaving";
-export const SRC_INI = "";
-export const STG_KEY_ST = "pdbMenuSections";
-export const MenuCtx = createContext<IMenuCtx>({
-  query: null,
-  setQuery: null,
-  filtered: null,
-  setFilter: null,
-  isFiltering: false,
-  isSaving: false,
-  setSaving: null,
-} as unknown as IMenuCtx);
+import {
+  SRC_INI,
+  STG_KEY,
+  STG_KEY_SV,
+  STG_KEY_ST,
+  btnCls,
+  sectCls,
+  btnSttCls,
+} from "@/lib/data/states";
 function ClientShell({ products }: { products: typeof PRODUCTS }) {
   const router = useRouter(),
     params = useSearchParams(),

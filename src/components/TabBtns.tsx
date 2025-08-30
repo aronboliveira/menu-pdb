@@ -1,5 +1,5 @@
 "use client";
-import { MenuCtx } from "@/app/page";
+import { MenuCtx } from "@/lib/contexts/MenuCtx";
 import { IMenuCtx, TabBtnsProps } from "@/lib/declarations/interfaces";
 import { useContext } from "react";
 import { ErrorBoundary } from "react-error-boundary";

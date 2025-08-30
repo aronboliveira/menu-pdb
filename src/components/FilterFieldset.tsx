@@ -1,7 +1,8 @@
 "use client";
 import React, { useContext, useId, useRef, useEffect, JSX } from "react";
 import { FilterFieldsetProps, IMenuCtx } from "@/lib/declarations/interfaces";
-import { MenuCtx, SRC_INI, STG_KEY } from "@/app/page";
+import { MenuCtx } from "@/lib/contexts/MenuCtx";
+import { STG_KEY, SRC_INI } from "@/lib/data/states";
 import TabBtns from "./TabBtns";
 import Search from "./Search";
 
