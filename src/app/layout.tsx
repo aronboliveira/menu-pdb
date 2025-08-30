@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cardápio Digital - Hildene PDB",
+  title: "Cardápio Digital - Tia da Praia da Bica",
   description:
     "Cardápio Digital para bebidas da famosa Tia da Praia da Bica, a Hildene.",
   keywords: [
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
     siteName: "Bar da Tia da Praia da Bica",
     images: [
       {
-        url: "/img/placeholder.webp",
-        width: 1200,
+        url: "/logo.webp",
+        width: 630,
         height: 630,
         alt: "Cardápio do Bar da Tia da Praia da Bica",
       },
