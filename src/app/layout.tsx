@@ -192,8 +192,9 @@ export default function RootLayout({
             title="Autoria do projeto"
             style={{ opacity: 0.85, marginBottom: "0.5rem" }}
           >
-            Desenvolvido por{" "}
+            <span id="developed-by">Desenvolvido por&nbsp;</span>
             <a
+              id="developer-name"
               href="https://aronboliveira-dev.netlify.app/"
               target="_blank"
               rel="noopener"
@@ -203,7 +204,7 @@ export default function RootLayout({
             >
               Aron Barbosa
             </a>{" "}
-            —{" "}
+            <span id="developed-space">—&nbsp;</span>
             <a
               href="https://github.com/aronboliveira"
               target="_blank"
@@ -236,8 +237,8 @@ export default function RootLayout({
             >
               * Sugestões ou problemas? Envie para o Desenvolvedor&nbsp;
               <a
+                id="developer-mail"
                 href="mailto:aronprogramador@gmail.com"
-                target="_blank"
                 rel="noopener"
                 title="Email profissional de Aron Barbosa"
                 className="text-center text-muted"

@@ -25,6 +25,14 @@ import {
   sectCls,
   btnSttCls,
 } from "@/lib/data/states";
+import {
+  iconAnimateClick,
+  iconAnimateMouseEnter,
+  iconAnimateMouseLeave,
+  iconAnimateTouchEnd,
+  iconAnimateTouchStart,
+  iconAnimeTouchCancel,
+} from "@/lib/utils";
 function ClientShell({ products }: { products: typeof PRODUCTS }) {
   const router = useRouter(),
     params = useSearchParams(),
@@ -60,6 +68,7 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
     [isSaving, setSaving] = useState<boolean>(true),
     [areSectsStored, setSectsStore] = useState<boolean>(false),
     [isMounted, setMount] = useState<boolean>(false),
+    [isDark, setDark] = useState<boolean>(false),
     sections: TabItem[] = useMemo(
       () =>
         ordered.map(id => ({
@@ -186,6 +195,7 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
     }
   }, [isSaving, isFiltering, query, setParams, todosActive, activeTabs]);
   useEffect(() => {
+    if (!isMounted) return;
     try {
       const storagedSections = sessionStorage.getItem(STG_KEY_ST);
       if (
@@ -285,6 +295,77 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
       document.body.setAttribute("listening-sect-changes", "true");
     }, 300);
   }, [areSectsStored]);
+  useEffect(() => {
+    if (!isMounted) return;
+    const dt = document.querySelectorAll(".toggle-dark-theme")[0];
+    if (!(dt instanceof HTMLElement)) return;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? true
+      : false;
+    if (!prefersDark) return;
+    dt.style.opacity = "1";
+    dt.style.transform = "translateY(-2px)";
+    setTimeout(() => {
+      if (dt.isConnected) dt.style.transform = "translateY(0)";
+      setTimeout(() => {
+        if (dt.isConnected) dt.style.transform = "translateY(-2px)";
+        setTimeout(() => {
+          if (dt.isConnected) dt.style.transform = "translateY(0)";
+        }, 150);
+      }, 150);
+    }, 150);
+    setTimeout(() => {
+      if (dt.isConnected) dt.style.opacity = "0.2";
+    }, 3000);
+  }, [isMounted]);
+  useEffect(() => {
+    const selectors = {
+      tags: ["details", "legend", "mark", "i", "svg"],
+      classes: [
+        "shell",
+        "accordion-button",
+        "accordion-body",
+        "accordion-collapse",
+        "accordion-button",
+        "accordion-body",
+        "list-group-item",
+        "list-group-item-action",
+        "desc",
+        "nav-link",
+        "toggle-dark-theme",
+        "scroll-to-top",
+        "tab-btn",
+        "btn",
+        "grid-products",
+        "input-group-text",
+        "form-control",
+      ],
+      ids: [
+        "tab-all",
+        "controlPanel",
+        "developed-by",
+        "developer-name",
+        "developed-space",
+        "developer-mail",
+      ],
+    };
+    [
+      document.body,
+      document.documentElement,
+      ...selectors.tags.flatMap(t => [...document.getElementsByTagName(t)]),
+      ...selectors.classes.flatMap(c => [
+        ...document.getElementsByClassName(c),
+      ]),
+      ...selectors.ids.map(id => document.getElementById(id)),
+    ]
+      .filter(el => el && el.isConnected)
+      .forEach(el => {
+        isDark
+          ? (el as Element).classList.add("dark-theme")
+          : (el as Element).classList.remove("dark-theme");
+      });
+  }, [isDark]);
   return (
     <ErrorBoundary FallbackComponent={() => <></>}>
       <MenuCtx.Provider
@@ -336,96 +417,37 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
             title="Voltar ao topo"
             onClick={ev => {
               window.scrollTo({ top: 0, behavior: "smooth" });
-              let tg = ev.currentTarget as HTMLElement;
-              const id = tg.id;
-              tg.setAttribute("data-animating-click", "true");
-              for (const [k, v] of Object.entries({
-                transform: "translateY(-1px)",
-                background: "darken(transparent, 5%)",
-                opacity: 1,
-              }))
-                (tg.style as any)[k] = v;
-              setTimeout(() => {
-                if (!tg?.isConnected)
-                  tg = document.getElementById(id) as HTMLElement;
-                if (!tg?.isConnected) return;
-                for (const [k, v] of Object.entries({
-                  transform: "translateY(0)",
-                  background: "transparent",
-                  opacity: 0.5,
-                }))
-                  (tg.style as any)[k] = v;
-                tg.removeAttribute("data-animating-click");
-              }, 1000);
+              iconAnimateClick(ev);
             }}
-            onMouseEnter={ev => {
-              const tg = ev.currentTarget as HTMLElement;
-              if (tg.getAttribute("data-animating-click") === "true") return;
-              for (const [k, v] of Object.entries({
-                transform: "translateY(-2px)",
-                background: "darken(transparent, 5%)",
-                opacity: 1,
-              }))
-                (tg.style as any)[k] = v;
-            }}
-            onMouseLeave={ev => {
-              const tg = ev.currentTarget as HTMLElement;
-              if (tg.getAttribute("data-animating-click") === "true") return;
-              for (const [k, v] of Object.entries({
-                transform: "translateY(0)",
-                background: "transparent",
-                opacity: 0.5,
-              }))
-                (tg.style as any)[k] = v;
-            }}
-            onTouchStart={ev => {
-              const tg = ev.currentTarget as HTMLElement;
-              if (tg.getAttribute("data-animating-click") === "true") return;
-              for (const [k, v] of Object.entries({
-                transform: "translateY(-2px)",
-                background: "darken(transparent, 5%)",
-                opacity: 1,
-              }))
-                (tg.style as any)[k] = v;
-            }}
-            onTouchEnd={ev => {
-              let tg = ev.currentTarget as HTMLElement;
-              const id = tg.id;
-              tg.setAttribute("data-animating-click", "true");
-              for (const [k, v] of Object.entries({
-                transform: "translateY(-1px)",
-                background: "darken(transparent, 5%)",
-                opacity: 1,
-              }))
-                (tg.style as any)[k] = v;
-              setTimeout(() => {
-                if (!tg?.isConnected)
-                  tg = document.getElementById(id) as HTMLElement;
-                if (!tg?.isConnected) return;
-                for (const [k, v] of Object.entries({
-                  transform: "translateY(0)",
-                  background: "transparent",
-                  opacity: 0.5,
-                }))
-                  (tg.style as any)[k] = v;
-
-                tg.removeAttribute("data-animating-click");
-              }, 1000);
-            }}
-            onTouchCancel={ev => {
-              const tg = ev.currentTarget as HTMLElement;
-              if (tg.getAttribute("data-animating-click") === "true") return;
-              for (const [k, v] of Object.entries({
-                transform: "translateY(0)",
-                background: "transparent",
-                opacity: 0.5,
-              }))
-                (tg.style as any)[k] = v;
-            }}
+            onMouseEnter={iconAnimateMouseEnter}
+            onMouseLeave={iconAnimateMouseLeave}
+            onTouchStart={iconAnimateTouchStart}
+            onTouchEnd={iconAnimateTouchEnd}
+            onTouchCancel={iconAnimeTouchCancel}
           >
             <i
               className="bi bi-arrow-up-circle-fill"
               style={{ transform: "scale(2) translate(-0.5rem, -0.5rem)" }}
+            ></i>
+          </span>
+        </ErrorBoundary>
+        <ErrorBoundary FallbackComponent={() => <></>}>
+          <span
+            className="toggle-dark-theme"
+            title="Alternar modo noturno"
+            onClick={ev => {
+              setDark(!isDark);
+              iconAnimateClick(ev);
+            }}
+            onMouseEnter={iconAnimateMouseEnter}
+            onMouseLeave={iconAnimateMouseLeave}
+            onTouchStart={iconAnimateTouchStart}
+            onTouchEnd={iconAnimateTouchEnd}
+            onTouchCancel={iconAnimeTouchCancel}
+          >
+            <i
+              className="bi bi-moon-stars-fill"
+              style={{ transform: "scale(1.2) translate(0.5rem, 0.5rem)" }}
             ></i>
           </span>
         </ErrorBoundary>
@@ -446,7 +468,7 @@ export default function Page() {
       streetAddress: "Praça Jerusalém",
     },
     servesCuisine: "Bebidas e petiscos",
-    url: "https://example.com/",
+    url: "https://drinks-tia-pdb.netlify.app/",
   };
   return (
     <ErrorBoundary FallbackComponent={() => <></>}>
