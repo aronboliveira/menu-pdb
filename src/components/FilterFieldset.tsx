@@ -214,7 +214,7 @@ export default function FilterFieldset({
           />
         </div>
         <p id={`${fsId}-help`} className="text-muted mt-2 mb-0">
-          <small>
+          <small id="clickTip">
             {isFiltering
               ? `Toque ou Clique nas botões com os nomes das Seções para ver os produtos delas. “Todos” mostra todas!`
               : `Toque ou Clique em um dos nomes das Seções para rolar para a escolhida automaticamente. “Todos” retorna para o topo!`}
