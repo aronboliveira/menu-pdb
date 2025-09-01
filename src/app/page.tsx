@@ -447,7 +447,7 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
           >
             <i
               className="bi bi-moon-stars-fill"
-              style={{ transform: "scale(1.2) translate(0.5rem, 0.5rem)" }}
+              style={{ transform: "scale(1.2) translate(0.5rem, calc(0.5rem + 1vh))" }}
             ></i>
           </span>
         </ErrorBoundary>
