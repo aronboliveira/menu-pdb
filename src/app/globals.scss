@@ -536,6 +536,12 @@ $infoColor: var(--brand);
   }
 }
 
+#smallTip {
+  &.dark-theme {
+     color: var(--text-1) !important
+  }
+}
+
 @media screen and (max-width: 535px) {
   .grid-products {
     summary {
