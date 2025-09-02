@@ -348,7 +348,7 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
         "developer-name",
         "developed-space",
         "developer-mail",
-        "smallTip"
+        "clickTip"
       ],
     };
     [
