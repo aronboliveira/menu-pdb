@@ -366,6 +366,9 @@ $activeColor: rgb(58, 174, 185);
     text-align: center;
     padding-top: 2%;
     transform: scale(1.2) translate(16px, 10px) !important;
+    @media (max-width: 600px) {
+      transform: scale(1.2) translate(16px, 15px) !important;
+    }
     &::before {
       transform: translateY(1px);
       @media (max-width: 600px) {
