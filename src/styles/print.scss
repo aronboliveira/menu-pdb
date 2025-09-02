@@ -1,0 +1,146 @@
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+  html,
+  body {
+    height: auto !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+  body {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .container-max {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .shell {
+    background: #d78bf8 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  header[role="banner"] {
+    justify-content: flex-start !important;
+  }
+
+  #logoImages img {
+    height: 1024px !important;
+    width: 1024px !important;
+  }
+
+  .mb-2.prods-sect:nth-of-type(1) {
+    margin-top: 40vh !important;
+  }
+
+  .filter-fieldset,
+  #sectBtns,
+  .tabgrid,
+  .btn,
+  .btn-control,
+  .form-check,
+  .input-group,
+  search,
+  .scroll-to-top,
+  .toggle-dark-theme,
+  [role="group"][aria-label="Navegar por seção"],
+  [id$="-help"],
+  .mb-2.prods-sect:nth-of-type(2),
+  small:has(#developer-mail) {
+    display: none !important;
+  }
+
+  .menu-root [data-hidden="true"] {
+    display: block !important;
+  }
+
+  .accordion-button {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    pointer-events: none !important;
+  }
+
+  .accordion-collapse {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+    overflow: visible !important;
+  }
+
+  details:not([open]) > *:not(summary) {
+    display: block !important;
+  }
+
+  .grid-products {
+    display: flex;
+    flex-direction: column;
+    gap: 6mm !important;
+    .desc {
+      font-size: 1rem !important;
+    }
+  }
+
+  .product {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .prods-sect {
+    display: block !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    margin-bottom: 10mm !important;
+  }
+
+  figure,
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid !important;
+  }
+
+  .price {
+    color: #000 !important;
+  }
+
+  hr {
+    opacity: 1 !important;
+    border: 0 !important;
+    border-top: 1px solid #ccc !important;
+    margin: 6mm 0 !important;
+  }
+
+  a,
+  a:link,
+  a:visited {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  address,
+  address * {
+    color: #000 !important;
+  }
+
+  .toggle-dark-theme,
+  .scroll-to-top,
+  #layout-watcher,
+  next-route-announcer {
+    display: none !important;
+  }
+
+  .product {
+    img {
+      width: 191px !important;
+      height: 255px !important;
+      min-width: 191px !important;
+      aspect-ratio: auto 191 / 255 !important;
+      object-fit: cover !important;
+    }
+  }
+}
