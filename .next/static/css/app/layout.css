@@ -141,6 +141,10 @@ mark.dark-theme {
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
+.border.dark-theme {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
 .container-max {
   max-width: 1000px;
   margin-inline: auto;
@@ -157,6 +161,9 @@ mark.dark-theme {
 .accordion-item {
   border: none;
   background: transparent;
+}
+.accordion-item.dark-theme {
+  border: none !important;
 }
 .accordion-button {
   padding: 0.35rem 0.5rem;
@@ -208,7 +215,7 @@ mark.dark-theme {
   list-style: none;
   white-space: pre-wrap;
 }
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
   .grid-products {
     grid-template-columns: 1fr 1fr;
   }
@@ -347,13 +354,23 @@ mark.dark-theme {
 .form-check-input:hover {
   outline: rgb(226, 238, 249) solid 0.25rem;
 }
+.form-check-input.dark-theme:not(:checked) {
+  background-color: #4b4b4b !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+.form-check-input.dark-theme:hover {
+  outline: rgba(255, 255, 255, 0.4) solid 0.25rem !important;
+}
 .form-control.dark-theme {
   background-color: #4b4b4b !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  margin-left: none !important;
 }
 
 .input-group-text.dark-theme {
   background-color: rgb(87, 86, 86) !important;
-  color: white;
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 ::selection {
@@ -435,11 +452,23 @@ mark.dark-theme {
   vertical-align: middle;
   text-align: center;
   padding-top: 2%;
-  transform: scale(1.2) translate(16px, 10px) !important;
+  transform: scale(1.2) translate(16px, 18px) !important;
+}
+@media (max-width: 600px) {
+  .toggle-dark-theme i,
+  .toggle-dark-theme svg {
+    transform: scale(1.2) translate(16px, 15px) !important;
+  }
 }
 .toggle-dark-theme i::before,
 .toggle-dark-theme svg::before {
   transform: translateY(1px);
+}
+@media (max-width: 600px) {
+  .toggle-dark-theme i::before,
+  .toggle-dark-theme svg::before {
+    transform: translateY(2px);
+  }
 }
 @media (max-width: 768px) {
   .toggle-dark-theme {
@@ -586,6 +615,10 @@ body.filtering:has(.tab-btn.active[data-to=combos]) #combos {
   border-color: var(--brand) !important;
 }
 
+#clickTip.dark-theme {
+  color: var(--text-1) !important;
+}
+
 @media screen and (max-width: 535px) {
   .grid-products summary {
     display: flex;
@@ -614,5 +647,134 @@ body.filtering:has(.tab-btn.active[data-to=combos]) #combos {
   }
   #controlPanel.dark-theme .form-switch {
     color: var(--text-1) !important;
+  }
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[11].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[11].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[11].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[11].use[5]!./src/styles/print.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+  html,
+  body {
+    height: auto !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+  body {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .container-max {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  .shell {
+    background: #d78bf8 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  header[role=banner] {
+    justify-content: flex-start !important;
+  }
+  #logoImages img {
+    height: 1024px !important;
+    width: 1024px !important;
+  }
+  .mb-2.prods-sect:nth-of-type(1) {
+    margin-top: 40vh !important;
+  }
+  .filter-fieldset,
+  #sectBtns,
+  .tabgrid,
+  .btn,
+  .btn-control,
+  .form-check,
+  .input-group,
+  search,
+  .scroll-to-top,
+  .toggle-dark-theme,
+  [role=group][aria-label="Navegar por seção"],
+  [id$=-help],
+  .mb-2.prods-sect:nth-of-type(2),
+  small:has(#developer-mail) {
+    display: none !important;
+  }
+  .menu-root [data-hidden=true] {
+    display: block !important;
+  }
+  .accordion-button {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    pointer-events: none !important;
+  }
+  .accordion-collapse {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+    overflow: visible !important;
+  }
+  details:not([open]) > *:not(summary) {
+    display: block !important;
+  }
+  .grid-products {
+    display: flex;
+    flex-direction: column;
+    gap: 6mm !important;
+  }
+  .grid-products .desc {
+    font-size: 1rem !important;
+  }
+  .product {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  .prods-sect {
+    display: block !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    margin-bottom: 10mm !important;
+  }
+  figure,
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid !important;
+  }
+  .price {
+    color: #000 !important;
+  }
+  hr {
+    opacity: 1 !important;
+    border: 0 !important;
+    border-top: 1px solid #ccc !important;
+    margin: 6mm 0 !important;
+  }
+  a,
+  a:link,
+  a:visited {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+  address,
+  address * {
+    color: #000 !important;
+  }
+  .toggle-dark-theme,
+  .scroll-to-top,
+  #layout-watcher,
+  next-route-announcer {
+    display: none !important;
+  }
+  .product img {
+    width: 191px !important;
+    height: 255px !important;
+    min-width: 191px !important;
+    aspect-ratio: auto 191/255 !important;
+    object-fit: cover !important;
   }
 }

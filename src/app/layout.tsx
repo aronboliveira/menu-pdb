@@ -251,7 +251,13 @@ export default function RootLayout({
           </div>
           <hr />
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Image width={128} height={144} src="/qrcode.png" alt="QR Code" />
+            <Image
+              width={144}
+              height={144}
+              src="/qrcode.jpeg"
+              alt="QR Code"
+              style={{ borderRadius: 4, border: "1px solid #ccc" }}
+            />
           </div>
         </div>
         <script

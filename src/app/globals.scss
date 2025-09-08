@@ -68,6 +68,13 @@ mark {
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
   }
 }
+
+.border {
+  &.dark-theme {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+}
+
 .container-max {
   max-width: 1000px;
   margin-inline: auto;
@@ -85,6 +92,9 @@ mark {
   &-item {
     border: none;
     background: transparent;
+    &.dark-theme {
+      border: none !important;
+    }
   }
   &-button {
     padding: 0.35rem 0.5rem;
@@ -287,11 +297,22 @@ $activeColor: rgb(58, 174, 185);
       &:hover {
         outline: rgb(226, 238, 249) solid 0.25rem;
       }
+      &.dark-theme {
+        &:not(:checked) {
+          background-color: #4b4b4b !important;
+          border-color: rgba(255, 255, 255, 0.4) !important;
+        }
+        &:hover {
+          outline: rgba(255, 255, 255, 0.4) solid 0.25rem !important;
+        }
+      }
     }
   }
   &-control {
     &.dark-theme {
       background-color: #4b4b4b !important;
+      border-color: rgba(255, 255, 255, 0.4) !important;
+      margin-left: none !important;
     }
   }
 }
@@ -301,7 +322,8 @@ $activeColor: rgb(58, 174, 185);
     &-text {
       &.dark-theme {
         background-color: rgb(87, 86, 86) !important;
-        color: white;
+        color: white !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
       }
     }
   }
@@ -544,7 +566,7 @@ $infoColor: var(--brand);
 
 #clickTip {
   &.dark-theme {
-     color: var(--text-1) !important
+    color: var(--text-1) !important;
   }
 }
 

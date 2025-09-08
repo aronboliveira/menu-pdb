@@ -316,19 +316,21 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
       }, 150);
     }, 150);
     setTimeout(() => {
-      if (dt.isConnected) dt.style.opacity = "0.2";
+      if (dt.isConnected) dt.style.opacity = "0.15";
     }, 3000);
   }, [isMounted]);
   useEffect(() => {
     const selectors = {
       tags: ["details", "legend", "mark", "i", "svg"],
       classes: [
+        "border",
         "shell",
         "accordion-button",
         "accordion-body",
         "accordion-collapse",
         "accordion-button",
         "accordion-body",
+        "accordion-item",
         "list-group-item",
         "list-group-item-action",
         "desc",
@@ -339,6 +341,7 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
         "btn",
         "grid-products",
         "input-group-text",
+        "form-check-input",
         "form-control",
       ],
       ids: [
@@ -348,7 +351,7 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
         "developer-name",
         "developed-space",
         "developer-mail",
-        "clickTip"
+        "clickTip",
       ],
     };
     [
@@ -448,7 +451,7 @@ function ClientShell({ products }: { products: typeof PRODUCTS }) {
           >
             <i
               className="bi bi-moon-stars-fill"
-              style={{ transform: "scale(1.2) translate(0.5rem, calc(0.5rem + 1vh))" }}
+              style={{ transform: "scale(1.2) translate(0.5rem, 1rem)" }}
             ></i>
           </span>
         </ErrorBoundary>
