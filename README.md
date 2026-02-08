@@ -3,6 +3,8 @@
 <details open>
 <summary><strong>Português (primário)</strong></summary>
 
+https://drinks-tia-pdb.netlify.app/
+
 ## 📋 Visão geral
 
 Aplicação de **cardápio digital** para um bar de rua em clima tropical, construída em **Next.js (App Router) + TypeScript**.  
@@ -146,6 +148,8 @@ Foco em **SEO**, **acessibilidade (WAI-ARIA)**, UI responsiva (**Bootstrap 5 + B
 
 A **digital menu** application for a tropical street bar, built with **Next.js (App Router) + TypeScript**.  
 Focus on **SEO**, **accessibility (WAI-ARIA)**, responsive UI (**Bootstrap 5 + Bootstrap Icons via CDN**), and **modularization**.
+
+https://drinks-tia-pdb.netlify.app/
 
 > ⚠️ This app is **not** a shopping cart. It displays products, prices, and categories with search, tabs, and smooth navigation.
 
